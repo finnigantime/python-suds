@@ -66,7 +66,6 @@ class DateTest(TestCase):
         d = xdate.translate(s)
         self.assertEqual(d, ref)
 
-
   
 class TimeTest(TestCase):
 
