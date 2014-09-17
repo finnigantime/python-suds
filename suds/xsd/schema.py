@@ -58,6 +58,7 @@ class SchemaCollection:
         self.wsdl = wsdl
         self.children = []
         self.namespaces = {}
+        self.importedSchemas = {}
         
     def add(self, schema):
         """
@@ -305,8 +306,10 @@ class Schema:
             imported = imp.open(options)
             if imported is None:
                 continue
-            imported.open_imports(options)
-            log.debug('imported:\n%s', imported)
+            if imported.tns[1] not in self.container.importedSchemas:
+                self.container.importedSchemas[imported.tns[1]] = imported
+                imported.open_imports(options)
+                log.debug('imported:\n%s', imported)
             self.merge(imported)
             
     def dereference(self):
