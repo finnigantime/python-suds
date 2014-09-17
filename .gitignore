@@ -1,0 +1,5 @@
+*.pyc
+build/
+dist/
+suds.egg-info/
+.idea/
